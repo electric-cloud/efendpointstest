@@ -1,0 +1,9 @@
+[Unit]
+Description=Mock EF Plugin Endpoint Receiver
+
+[Service]
+ExecStart=/opt/electriccloud/mockflow/mockflow.pl
+Environment="PATH=$PATH:/opt/gradle/bin:/opt/electriccloud/electriccommander/bin"
+
+[Install]
+WantedBy=multi-user.target
