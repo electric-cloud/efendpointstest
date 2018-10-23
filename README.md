@@ -5,15 +5,13 @@ This is a proof of concept for EF Plugin Endpoints as described in [Plugin-creat
 ## Setup
 1. Clone this repo
 ```git clone https://github.com/electric-cloud/efendpointstest.git /opt/electriccloud/mockflow```
-1. Set up and run a systemd service
-```cp /opt/electriccloud/mockflow/mockflow.service /etc/systemd/system
+1. Set up and run a systemd service ```
+cp /opt/electriccloud/mockflow/mockflow.service /etc/systemd/system
 systemctl daemon-reload
 systemctl restart mockflow.service
-journalctl -u mockflow.service
-```
-1. Log in to EF server and create the necessary stuff inside
-```/opt/electriccloud/electriccommander/bin/ectool login username password
-/opt/electriccloud/electriccommander/bin/ectool evalDsl --dslFile /opt/electriccloud/mockflow/EC-Github.dsl
-```
+journalctl -u mockflow.service```
+1. Log in to EF server and create the necessary stuff inside ```
+/opt/electriccloud/electriccommander/bin/ectool login username password
+/opt/electriccloud/electriccommander/bin/ectool evalDsl --dslFile /opt/electriccloud/mockflow/EC-Github.dsl```
 1. (optional) Configure a github webhook to your newly created endpoint at http://HOSTNAME:8888/endpoints/EC-Github/1.0/webhook
 1. Enjoy!
