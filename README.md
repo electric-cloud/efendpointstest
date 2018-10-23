@@ -21,3 +21,6 @@ journalctl -u mockflow.service
 ```
 4. (optional) Configure a github webhook to your newly created endpoint at http://HOSTNAME:8888/endpoints/EC-Github/1.0/webhook
 5. Enjoy!
+
+## Example
+This is set up on web.test.ecloud-kdemo.com according to the instructions above.  Also, https://github.com/electric-cloud/test.git is set up to send a webhook to web.test.ecloud-kdemo.com on an code pushes.
