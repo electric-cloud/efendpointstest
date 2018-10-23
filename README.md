@@ -23,4 +23,4 @@ journalctl -u mockflow.service
 5. Enjoy!
 
 ## Example
-This is set up on web.test.ecloud-kdemo.com according to the instructions above.  Also, https://github.com/electric-cloud/test.git is set up to send a webhook to web.test.ecloud-kdemo.com on an code pushes.
+This is set up on https://web.test.ecloud-kdemo.com according to the instructions above.  Also, https://github.com/electric-cloud/test.git is set up to send a webhook to web.test.ecloud-kdemo.com on an code pushes.
