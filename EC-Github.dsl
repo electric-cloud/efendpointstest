@@ -29,5 +29,17 @@ project "Default", {
 			echo payload: $[payload]
 			echo headers: $[headers]
 		'''.stripIndent()
+		
+		step "Show Repository", shell: "ec-groovy", command: '''\
+			import groovy.json.*
+			import com.electriccloud.client.groovy.ElectricFlow
+			ElectricFlow ef = new ElectricFlow()
+			def result = ef.getProperty(propertyName: "payload")
+			
+			def jsonSlurper = new JsonSlurper()
+			def payload = jsonSlurper.parseText(result.property.value)
+			
+			println payload.repository.full_name
+		'''.stripIndent()
 	}
 }
