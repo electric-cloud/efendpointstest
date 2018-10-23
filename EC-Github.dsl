@@ -1,13 +1,26 @@
+
+
+//	Create a dummy plugin to store the endpoint dsl
 plugin "EC-Github", version: "1.0.0.0", {
 	procedure "CreateConfiguration"
 }
 
+// Promote the dummy plugin
 promotePlugin pluginName: "EC-Github-1.0.0.0"
 
-property("/plugins/EC-Github/project/ec_endpoints/webhook/dsl", value:"runProcedure(procedureName: 'do nothing', projectName: 'Default', actualParameter: [payload: (String) args.payload, headers: (String) args.headers])")
+// Add the sample webhook dsl
+property "/plugins/EC-Github/project/ec_endpoints/webhook/dsl",
+	value: '''\
+		import groovy.json.*
+		runProcedure procedureName: 'do nothing',
+			projectName: 'Default',
+				actualParameter: [
+					payload: JsonOutput.toJson(args.payload),
+					headers: JsonOutput.toJson(args.headers)
+				]
+	'''.stripIndent()
 
-// TODO: payload and headers JSON is incorrect, {testfield=abc}
-
+// Create the procedure to process the webhook
 project "Default", {
 	procedure "do nothing",{
 		formalParameter "payload"
