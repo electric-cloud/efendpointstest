@@ -22,8 +22,8 @@ while (my $c = $d->accept) {
                     my $prop = $ec->getProperty("/myPlugin/project/ec_endpoints/webhook/dsl", {pluginName => "EC-Github"});
                     my $dsl = $prop->findvalue("//value")->value();
 					
-					my $headers = encode_json TO_JSON ($r->headers);
-					my $payload = $r->content;
+					my $headers = "" . encode_json TO_JSON ($r->headers); # Force JSON to string
+					my $payload = "" . $r->content;
 					print STDERR "\n" . "Payload: " . $payload;
 					print STDERR "\n" . "Headers: " . $headers;
 
