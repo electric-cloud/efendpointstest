@@ -9,10 +9,16 @@ $SIG{CHLD} = 'IGNORE';
 
 my $d = HTTP::Daemon->new(LocalPort => 8888) || die;
 print "Please contact me at: <URL:", $d->url, ">\n";
+
+
 while (my $c = $d->accept) {
     unless (fork()) {
-        my $ec = new ElectricCommander();
-        $ec->login('admin','changeme');
+        my $username = $ENV{MOCKFLOW_USER} ||= 'admin';
+        my $password = $ENV{MOCKFLOW_PASS} ||= 'changeme';
+        my $host = $ENV{MOCKFLOW_EF_HOST} ||= 'localhost';
+        my $ec = new ElectricCommander({server => $host});
+        $ec->login($username, $password);
+        print "Logged in successfully\n";
 
         while (my $r = $c->get_request) {
             if ($r->uri->path eq "/test" or $r->method eq 'POST' and $r->uri->path eq "/endpoints/EC-Github/1.0/webhook") {
